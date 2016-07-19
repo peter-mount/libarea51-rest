@@ -1,6 +1,6 @@
 # Maintainer: Peter Mount <peter@retep.org>
 
-pkgname="area51-rest"
+pkgname="libarea51-rest"
 pkgver="0.1"
 pkgrel="1"
 pkgdesc="Area51 HTTP Rest server"
