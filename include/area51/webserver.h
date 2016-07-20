@@ -5,8 +5,8 @@
  * Created on February 5, 2014, 8:40 PM
  */
 
-#ifndef WEBSERVER_H
-#define WEBSERVER_H
+#ifndef AREA51_WEBSERVER_H
+#define AREA51_WEBSERVER_H
 
 #include <pthread.h>
 #include <microhttpd.h>
@@ -106,5 +106,5 @@ extern void webserver_update_index();
 extern int notFoundHandler(struct MHD_Connection * connection, WEBSERVER_HANDLER *handler);
 extern int staticHandler(struct MHD_Connection * connection, const char *url);
 
-#endif /* WEBSERVER_H */
+#endif /* AREA51_WEBSERVER_H */
 

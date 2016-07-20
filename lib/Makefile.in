@@ -1,6 +1,12 @@
 MODULE = area51-rest
 
-OBJS  = webserver/core/init.o \
+OBJS  = rest/append_int.o \
+	rest/append_list.o \
+	rest/append_str.o \
+	rest/handler/search_int.o \
+	rest/handler/search_str.o
+
+OBJS += webserver/core/init.o \
 	webserver/core/setDefaults.o \
 	webserver/core/start.o \
 	webserver/core/stop.o \
