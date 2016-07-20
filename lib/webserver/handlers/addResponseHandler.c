@@ -9,7 +9,7 @@
 #include <stdarg.h>
 #include <area51/webserver.h>
 
-static int serve(struct MHD_Connection * connection, WEBSERVER_HANDLER *handler) {
+static int serve(struct MHD_Connection * connection, WEBSERVER_HANDLER *handler, const char *url) {
     struct MHD_Response *response = getResponse( handler->node.name);
     if (response)
         queueResponse(connection, &response);

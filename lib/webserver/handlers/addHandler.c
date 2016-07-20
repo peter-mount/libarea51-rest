@@ -12,7 +12,7 @@
 
 extern int verbose;
 
-WEBSERVER_HANDLER *webserver_add_handler(const char *url, int (*handler)(struct MHD_Connection *connection, WEBSERVER_HANDLER *handler)) {
+WEBSERVER_HANDLER *webserver_add_handler(const char *url, int (*handler)(struct MHD_Connection *connection, WEBSERVER_HANDLER *handler, const char *url)) {
     if (!url || strlen(url) == 0 || url[0] != '/') {
         logconsole("Invalid url \"%s\" for a handler", url);
         return NULL;

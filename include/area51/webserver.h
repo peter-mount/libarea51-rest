@@ -55,7 +55,7 @@ extern WEBSERVER webserver;
 struct webserverHandler {
     struct Node node;
     // The function to handle this request
-    int (*handler)(struct MHD_Connection *connection, WEBSERVER_HANDLER *handler);
+    int (*handler)(struct MHD_Connection *connection, WEBSERVER_HANDLER *handler, const char *url);
     // optional userdata
     void *userdata;
 };
@@ -93,7 +93,7 @@ extern char* genurl(const char *contextPath, const char *suffix);
 
 extern int sendResponse(struct MHD_Connection *connection, int status, struct MHD_Response *response);
 
-extern WEBSERVER_HANDLER * webserver_add_handler(const char *url, int (*handler)(struct MHD_Connection *connection, WEBSERVER_HANDLER *handler));
+extern WEBSERVER_HANDLER * webserver_add_handler(const char *url, int (*handler)(struct MHD_Connection *connection, WEBSERVER_HANDLER *handler, const char *url));
 extern void webserver_add_response_handler(const char *url);
 extern void webserver_initialise();
 extern void webserver_enableIPv4();
