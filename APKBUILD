@@ -2,7 +2,7 @@
 
 pkgname="libarea51-rest"
 pkgver="0.1"
-pkgrel="6"
+pkgrel="7"
 pkgdesc="Area51 HTTP Rest server"
 arch="x86_64"
 url="https://area51.onl/"
@@ -27,7 +27,7 @@ package() {
 }
 
 dev() {
-  depends="$pkgname nrod-corpus"
+  depends="$pkgname libarea51-rest"
   mkdir -p "$subpkgdir/usr/include"
   cp -rp build/package/usr/include/* "$subpkgdir/usr/include"
 }
