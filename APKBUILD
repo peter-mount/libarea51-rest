@@ -2,7 +2,7 @@
 
 pkgname="libarea51-rest"
 pkgver="0.1"
-pkgrel="7"
+pkgrel="8"
 pkgdesc="Area51 HTTP Rest server"
 arch="x86_64"
 url="https://area51.onl/"
