@@ -6,7 +6,7 @@
 #include <area51/charbuffer.h>
 #include <area51/rest.h>
 
-void json_append_int(struct charbuffer *b, int v) {
+void json_append_int(CharBuffer *b, int v) {
     if (v == INT_MIN)
         charbuffer_append(b, "null");
     else

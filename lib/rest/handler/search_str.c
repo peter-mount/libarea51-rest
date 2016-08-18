@@ -5,13 +5,13 @@
 
 struct data {
     int prefixLength;
-    void (*handler)(struct charbuffer *, const char *value);
+    void (*handler)(CharBuffer *, const char *value);
 };
 
 static int handler(struct MHD_Connection * connection, WEBSERVER_HANDLER *handler, const char *url) {
     struct data *data = (struct data *) handler->userdata;
 
-    struct charbuffer b;
+    CharBuffer b;
     charbuffer_init(&b);
 
     if (strlen(url)>(data->prefixLength + 1) && url[data->prefixLength])
@@ -21,7 +21,7 @@ static int handler(struct MHD_Connection * connection, WEBSERVER_HANDLER *handle
     return queueResponse(connection, &response);
 }
 
-void webserver_add_search_str(const char *prefix, void (*search)(struct charbuffer *, const char *value)) {
+void webserver_add_search_str(const char *prefix, void (*search)(CharBuffer *, const char *value)) {
     char *pattern = genurl(prefix, "/*");
 
     WEBSERVER_HANDLER *h = webserver_add_handler(pattern, handler);

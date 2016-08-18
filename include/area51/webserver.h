@@ -69,7 +69,7 @@ struct webserverHandler {
 extern void replaceResponse(const char *url, struct MHD_Response *newResponse);
 extern void replaceResponseArray(const char *url, void *data, int len, const char *contentType);
 extern void replaceResponseByteBuffer(const char *url, struct bytebuffer *b, const char *contentType);
-extern void replaceResponseCharBuffer(const char *url, struct charbuffer *b, const char *contentType);
+extern void replaceResponseCharBuffer(const char *url, CharBuffer *b, const char *contentType);
 
 /**
  * Returns the current value of reponse atomically

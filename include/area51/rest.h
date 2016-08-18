@@ -26,13 +26,13 @@ extern "C" {
      * @param b
      * @param v
      */
-    extern void json_append_int(struct charbuffer *b, int v);
+    extern void json_append_int(CharBuffer *b, int v);
     /**
      * Append a string to a buffer. If null then null will be written
      * @param b
      * @param s
      */
-    extern void json_append_str(struct charbuffer *b, char *s);
+    extern void json_append_str(CharBuffer *b, char *s);
 
     /**
      * Write a List as an array
@@ -40,7 +40,7 @@ extern "C" {
      * @param l List
      * @param appender method to write a Node to the charbuffer
      */
-    extern void json_append_list(struct charbuffer *b, List *l, void (*appender)(struct charbuffer *, Node *));
+    extern void json_append_list(CharBuffer *b, List *l, void (*appender)(CharBuffer *, Node *));
 
     /**
      * Add a handler that will perform an int search.
@@ -52,9 +52,9 @@ extern "C" {
      * @param map Hashmap with int keys
      * @param search meth
      */
-    extern void webserver_add_search_int(const char *prefix, void (*search)(struct charbuffer *, int value));
+    extern void webserver_add_search_int(const char *prefix, void (*search)(CharBuffer *, int value));
 
-    extern void webserver_add_search_str(const char *prefix, void (*search)(struct charbuffer *, const char *value));
+    extern void webserver_add_search_str(const char *prefix, void (*search)(CharBuffer *, const char *value));
 #ifdef __cplusplus
 }
 #endif
