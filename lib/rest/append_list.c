@@ -6,12 +6,12 @@
 #include <area51/list.h>
 #include <area51/rest.h>
 
-void json_append_list(struct charbuffer *b, struct List *l, void (*appender)(struct charbuffer *, struct Node *)) {
+void json_append_list(struct charbuffer *b, List *l, void (*appender)(struct charbuffer *, Node *)) {
     bool sep = false;
     charbuffer_add(b, '[');
 
     if (l) {
-        struct Node *n = list_getHead(l);
+        Node *n = list_getHead(l);
         while (n && list_isNode(n)) {
             if (sep)
                 charbuffer_add(b, ',');

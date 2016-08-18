@@ -40,7 +40,7 @@ extern "C" {
      * @param l List
      * @param appender method to write a Node to the charbuffer
      */
-    extern void json_append_list(struct charbuffer *b, struct List *l, void (*appender)(struct charbuffer *, struct Node *));
+    extern void json_append_list(struct charbuffer *b, List *l, void (*appender)(struct charbuffer *, Node *));
 
     /**
      * Add a handler that will perform an int search.

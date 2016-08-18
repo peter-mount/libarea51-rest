@@ -44,7 +44,7 @@ typedef struct {
     struct MHD_Daemon *daemon4;
     struct MHD_Daemon *daemon6;
     // Our handlers
-    struct List handlers;
+    List handlers;
 } WEBSERVER;
 
 extern WEBSERVER webserver;
@@ -53,7 +53,7 @@ extern WEBSERVER webserver;
  * A handler that will respond to a specific URI on the website
  */
 struct webserverHandler {
-    struct Node node;
+    Node node;
     // The function to handle this request
     int (*handler)(struct MHD_Connection *connection, WEBSERVER_HANDLER *handler, const char *url);
     // optional userdata
