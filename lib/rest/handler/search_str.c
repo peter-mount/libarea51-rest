@@ -14,7 +14,7 @@ static int handler(struct MHD_Connection * connection, WEBSERVER_HANDLER *handle
     CharBuffer b;
     charbuffer_init(&b);
 
-    if (strlen(url)>(data->prefixLength + 1) && url[data->prefixLength])
+    if (strlen(url)>(data->prefixLength) && url[data->prefixLength])
         data->handler(&b, &url[data->prefixLength]);
 
     struct MHD_Response *response = MHD_create_response_from_buffer(b.pos, b.buffer, MHD_RESPMEM_MUST_FREE);

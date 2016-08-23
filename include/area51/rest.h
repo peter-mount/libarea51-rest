@@ -26,13 +26,13 @@ extern "C" {
      * @param b
      * @param v
      */
-    extern void json_append_int(CharBuffer *b, int v);
+    extern void json_append_int(CharBuffer *, int );
     /**
      * Append a string to a buffer. If null then null will be written
      * @param b
      * @param s
      */
-    extern void json_append_str(CharBuffer *b, char *s);
+    extern void json_append_str(CharBuffer *, char *);
 
     /**
      * Write a List as an array
@@ -40,7 +40,7 @@ extern "C" {
      * @param l List
      * @param appender method to write a Node to the charbuffer
      */
-    extern void json_append_list(CharBuffer *b, List *l, void (*appender)(CharBuffer *, Node *));
+    extern void json_append_list(CharBuffer *, List *, void (*)(CharBuffer *, Node *));
 
     /**
      * Add a handler that will perform an int search.
@@ -52,9 +52,11 @@ extern "C" {
      * @param map Hashmap with int keys
      * @param search meth
      */
-    extern void webserver_add_search_int(const char *prefix, void (*search)(CharBuffer *, int value));
+    extern void webserver_add_search_int(const char *, void (*)(CharBuffer *, int));
 
-    extern void webserver_add_search_str(const char *prefix, void (*search)(CharBuffer *, const char *value));
+    extern void webserver_add_search_str(const char *, void (*)(CharBuffer *, const char *));
+
+    extern void webserver_add_static(const char *, void (*)(CharBuffer *));
 
     extern void json_append_date_ISO(CharBuffer *, time_t *);
     extern void json_append_datetime_ISO(CharBuffer *, time_t *);

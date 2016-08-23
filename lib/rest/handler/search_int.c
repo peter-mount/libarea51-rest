@@ -12,7 +12,7 @@ static int handler(struct MHD_Connection * connection, WEBSERVER_HANDLER *handle
     struct data *data = (struct data *) handler->userdata;
 
     int val = INT_MIN;
-    if (strlen(url)>(data->prefixLength+1) && url[data->prefixLength])
+    if (strlen(url)>(data->prefixLength) && url[data->prefixLength])
         val = atoi(&url[data->prefixLength]);
 
     CharBuffer b;
