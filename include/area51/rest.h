@@ -55,6 +55,12 @@ extern "C" {
     extern void webserver_add_search_int(const char *prefix, void (*search)(CharBuffer *, int value));
 
     extern void webserver_add_search_str(const char *prefix, void (*search)(CharBuffer *, const char *value));
+
+    extern void json_append_date_ISO(CharBuffer *, time_t *);
+    extern void json_append_datetime_ISO(CharBuffer *, time_t *);
+    extern void json_append_time_hhmm(CharBuffer *, time_t *);
+    extern void json_append_time_hhmmss(CharBuffer *, time_t *);
+
 #ifdef __cplusplus
 }
 #endif

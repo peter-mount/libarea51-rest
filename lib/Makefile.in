@@ -3,6 +3,10 @@ MODULE = area51-rest
 OBJS  = rest/append_int.o \
 	rest/append_list.o \
 	rest/append_str.o \
+	rest/date/date_iso.o \
+	rest/date/datetime_iso.o \
+	rest/date/time_hhmm.o \
+	rest/date/time_hhmmss.o \
 	rest/handler/search_int.o \
 	rest/handler/search_str.o
 
