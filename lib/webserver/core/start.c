@@ -45,24 +45,31 @@ static int handler(void * cls,
 
     // Find a handler for this url. If we don't find one then the last one gets invoked as its only one with url NULL
     WEBSERVER_HANDLER *h = (WEBSERVER_HANDLER *) list_getHead(&webserver.handlers);
-    //while (list_isNode(&h->node) && strcmp(url, h->node.name)) {
     while (list_isNode(&h->node)) {
-        
+
         int nl = h->node.name ? strlen(h->node.name) : 0;
-        if (nl > 0 && h->node.name[nl - 1] == '*') {
-            if (strncmp(url, h->node.name, nl - 1) == 0)
-                break;
-        } else if (strcmp(url, h->node.name) == 0)
-            break;
+
+        bool match = false;
+
+        // Dynamic paths ending in *
+        if (nl > 0 && h->node.name[nl - 1] == '*')
+            match = strncmp(url, h->node.name, nl - 1) == 0;
+
+        // Static paths (Not ending in *)
+        if (!match)
+            match = strcmp(url, h->node.name) == 0;
+
+        if (match) {
+            // Clear the pointer
+            *ptr = NULL;
+
+            // Call the handler, if it returns MHD_NO then carry on searching
+            if (h->handler(connection, h, url) == MHD_YES)
+                return MHD_YES;
+        }
+
         h = (WEBSERVER_HANDLER *) h->node.n_succ;
     }
-
-    // clear context pointer
-    *ptr = NULL;
-
-    // Call the handler, otherwise notFound
-    if (list_isNode(&h->node))
-        return h->handler(connection, h, url);
 
     // Static content?
     if (staticHandler(connection, url) == MHD_YES)

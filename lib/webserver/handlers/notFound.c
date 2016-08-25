@@ -16,5 +16,5 @@
  * @return 
  */
 int notFoundHandler(struct MHD_Connection * connection, WEBSERVER_HANDLER *handler) {
-    queueResponse(connection,&webserver.notFoundResponse);
+    return queueResponse(connection,&webserver.notFoundResponse);
 }
