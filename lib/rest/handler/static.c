@@ -9,8 +9,8 @@ struct data {
     void (*handler)(CharBuffer *);
 };
 
-static int handler(struct MHD_Connection * connection, WEBSERVER_HANDLER *handler, const char *url) {
-    void (*api)(CharBuffer *) = handler->userdata;
+static int handler(WEBSERVER_REQUEST *request) {
+    void (*api)(CharBuffer *) = webserver_getUserData(request);
 
     CharBuffer b;
     charbuffer_init(&b);
@@ -18,12 +18,9 @@ static int handler(struct MHD_Connection * connection, WEBSERVER_HANDLER *handle
     api(&b);
 
     struct MHD_Response *response = MHD_create_response_from_buffer(b.pos, b.buffer, MHD_RESPMEM_MUST_FREE);
-    return queueResponse(connection, &response);
+    return queueResponse(request, &response);
 }
 
-void webserver_add_static(const char *prefix, void (*api)(CharBuffer *)) {
-    WEBSERVER_HANDLER *h = webserver_add_handler(prefix, handler);
-    if (h) {
-        h->userdata = api;
-    }
+void webserver_add_static(WEBSERVER *webserver, const char *prefix, void (*api)(CharBuffer *)) {
+    webserver_add_handler(webserver, prefix, handler, api);
 }

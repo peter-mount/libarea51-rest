@@ -7,8 +7,8 @@ OBJS  = rest/append_int.o \
 	rest/date/datetime_iso.o \
 	rest/date/time_hhmm.o \
 	rest/date/time_hhmmss.o \
-	rest/handler/static.o \
 	rest/handler/search_int.o \
-	rest/handler/search_str.o
+	rest/handler/search_str.o \
+	rest/handler/static.o
 
 include ../SubMakefile
