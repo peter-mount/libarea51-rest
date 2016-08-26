@@ -12,13 +12,17 @@ static int handler(WEBSERVER_REQUEST *request) {
     struct data *data = webserver_getUserData(request);
 
     const char *url = webserver_getRequestUrl(request);
-    CharBuffer b;
-    charbuffer_init(&b);
+    CharBuffer *b = charbuffer_new();
 
     if (strlen(url)>(data->prefixLength) && url[data->prefixLength])
-        data->handler(&b, &url[data->prefixLength]);
+        data->handler(b, &url[data->prefixLength]);
 
-    struct MHD_Response *response = MHD_create_response_from_buffer(b.pos, b.buffer, MHD_RESPMEM_MUST_FREE);
+    int len=0;
+    void *buf = charbuffer_getBuffer(b,&len);
+    
+    charbuffer_free(b);
+    
+    struct MHD_Response *response = MHD_create_response_from_buffer(len, buf, MHD_RESPMEM_MUST_FREE);
     return webserver_queueResponse(request, &response);
 }
 

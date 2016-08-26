@@ -16,13 +16,17 @@ static int handler(WEBSERVER_REQUEST *request) {
     if (strlen(url)>(data->prefixLength) && url[data->prefixLength])
         val = atoi(&url[data->prefixLength]);
 
-    CharBuffer b;
-    charbuffer_init(&b);
+    CharBuffer *b = charbuffer_new();
 
     if (val > INT_MIN)
-        data->handler(&b, val);
+        data->handler(b, val);
 
-    struct MHD_Response *response = MHD_create_response_from_buffer(b.pos, b.buffer, MHD_RESPMEM_MUST_FREE);
+    int len=0;
+    void *buf = charbuffer_getBuffer(b,&len);
+    
+    charbuffer_free(b);
+    
+    struct MHD_Response *response = MHD_create_response_from_buffer(len, buf, MHD_RESPMEM_MUST_FREE);
     return webserver_queueResponse(request, &response);
 }
 
