@@ -23,7 +23,7 @@ static int handler(WEBSERVER_REQUEST *request) {
         data->handler(&b, val);
 
     struct MHD_Response *response = MHD_create_response_from_buffer(b.pos, b.buffer, MHD_RESPMEM_MUST_FREE);
-    return queueResponse(request, &response);
+    return webserver_queueResponse(request, &response);
 }
 
 void webserver_add_search_int(WEBSERVER *webserver, const char *prefix, void (*search)(CharBuffer *, int value)) {

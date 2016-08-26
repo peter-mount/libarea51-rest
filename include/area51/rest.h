@@ -16,6 +16,7 @@
 
 #include <area51/charbuffer.h>
 #include <area51/list.h>
+#include <area51/webserver.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -26,7 +27,7 @@ extern "C" {
      * @param b
      * @param v
      */
-    extern void json_append_int(CharBuffer *, int );
+    extern void json_append_int(CharBuffer *, int);
     /**
      * Append a string to a buffer. If null then null will be written
      * @param b
@@ -52,11 +53,11 @@ extern "C" {
      * @param map Hashmap with int keys
      * @param search meth
      */
-    extern void webserver_add_search_int(const char *, void (*)(CharBuffer *, int));
+    extern void webserver_add_search_int(WEBSERVER *, const char *, void (*)(CharBuffer *, int));
 
-    extern void webserver_add_search_str(const char *, void (*)(CharBuffer *, const char *));
+    extern void webserver_add_search_str(WEBSERVER *, const char *, void (*)(CharBuffer *, const char *));
 
-    extern void webserver_add_static(const char *, void (*)(CharBuffer *));
+    extern void webserver_add_static(WEBSERVER *, const char *, void (*)(CharBuffer *));
 
     extern void json_append_date_ISO(CharBuffer *, time_t *);
     extern void json_append_datetime_ISO(CharBuffer *, time_t *);
