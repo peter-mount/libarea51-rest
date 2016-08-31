@@ -17,12 +17,13 @@ static int handler(WEBSERVER_REQUEST *request) {
     if (strlen(url)>(data->prefixLength) && url[data->prefixLength])
         data->handler(b, &url[data->prefixLength]);
 
-    int len=0;
-    void *buf = charbuffer_getBuffer(b,&len);
-    
+    int len = 0;
+    void *buf = charbuffer_getBuffer(b, &len);
+
     charbuffer_free(b);
-    
+
     struct MHD_Response *response = MHD_create_response_from_buffer(len, buf, MHD_RESPMEM_MUST_FREE);
+    MHD_add_response_header(response, "Access-Control-Allow-Origin", "*");
     return webserver_queueResponse(request, &response);
 }
 
